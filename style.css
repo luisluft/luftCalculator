@@ -65,7 +65,48 @@ body {
   padding: 10px;
 }
 
+button {
+  min-height: 50px;
+  font-size: 20px;
+  font-weight: 100;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgb(187, 187, 187);
+}
+
+button:hover {
+  filter: brightness(120%);
+}
+
+button:active {
+  transform: translate(0px, 3px);
+}
+
+button:focus {
+  outline: none;
+}
+
+.operator {
+  background-color: gray;
+  color: white;
+  font-size: 30px;
+}
+
+.clear {
+  color: white;
+  background-color: darkorange;
+}
+
 .equal-sign {
+  background-color: green;
   grid-column: -2;
   grid-row: 2 / span 4;
+}
+
+/* Phone responsiveness */
+@media screen and (max-width: 600px) {
+  .calculator {
+    width: 95%;
+  }
 }
