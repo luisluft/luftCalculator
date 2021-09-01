@@ -1,11 +1,20 @@
 const calculatorDisplay = document.querySelector("h1");
 const inputButtons = document.querySelectorAll("button");
-const clearButton = document.querySelector("#clear-button");
+const clearButton = document.querySelector(".clear-button");
 
 function sendNumberValue(number) {
   const displayedValue = calculatorDisplay.textContent;
 
   calculatorDisplay.textContent = displayedValue === "0" ? number : displayedValue + number;
+}
+
+function resetCalculator() {
+  calculatorDisplay.textContent = "0";
+}
+
+function addDecimal() {
+  // First decimal
+  if (!calculatorDisplay.textContent.includes(".")) calculatorDisplay.textContent = `${calculatorDisplay.textContent}.`;
 }
 
 // Event listeners
@@ -15,5 +24,6 @@ inputButtons.forEach((button) => {
   // Operator buttons
   else if (button.classList.contains("operator")) button.addEventListener("click", () => sendNumberValue(button.value));
   // Decimal buttons
-  else if (button.classList.contains("decimal")) button.addEventListener("click", () => sendNumberValue(button.value));
+  else if (button.classList.contains("decimal")) button.addEventListener("click", addDecimal);
 });
+clearButton.addEventListener("click", resetCalculator);
