@@ -1,6 +1,13 @@
 const calculatorDisplay = document.querySelector("h1");
 const inputButtons = document.querySelectorAll("button");
 const clearButton = document.querySelector(".clear-button");
+const calculate = {
+  "/": (firstNumber, secondNumber) => firstNumber / secondNumber,
+  "*": (firstNumber, secondNumber) => firstNumber * secondNumber,
+  "+": (firstNumber, secondNumber) => firstNumber + secondNumber,
+  "-": (firstNumber, secondNumber) => firstNumber - secondNumber,
+  "=": (firstNumber, secondNumber) => secondNumber,
+};
 
 let firstValue = 0;
 let operatorValue = "";
@@ -37,14 +44,6 @@ function useOperator(operator) {
   operatorPressed = true;
   operatorValue = operator;
 }
-
-const calculate = {
-  "/": (firstNumber, secondNumber) => firstNumber / secondNumber,
-  "*": (firstNumber, secondNumber) => firstNumber * secondNumber,
-  "+": (firstNumber, secondNumber) => firstNumber + secondNumber,
-  "-": (firstNumber, secondNumber) => firstNumber - secondNumber,
-  "=": (firstNumber, secondNumber) => secondNumber,
-};
 
 function resetCalculator() {
   firstValue = 0;
