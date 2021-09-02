@@ -18,17 +18,33 @@ function sendNumberValue(number) {
 
 function useOperator(operator) {
   const currentValue = Number(calculatorDisplay.textContent);
-  operatorValue = operator;
 
-  // First value
+  // Do nothing if operator was already pressed
+  if (operatorValue && operatorPressed) {
+    operatorValue = operator;
+    return;
+  }
+
+  // First numeric value
   if (!firstValue) firstValue = currentValue;
-  else console.log("currentValue :", currentValue);
-  // Second value
-  operatorPressed = true;
+  // Second numeric value
+  else {
+    const calculation = calculate[operatorValue](firstValue, currentValue);
+    firstValue = calculation;
+    calculatorDisplay.textContent = calculation;
+  }
 
-  console.log("firstValue :", firstValue);
-  console.log("operatorValue :", operatorValue);
+  operatorPressed = true;
+  operatorValue = operator;
 }
+
+const calculate = {
+  "/": (firstNumber, secondNumber) => firstNumber / secondNumber,
+  "*": (firstNumber, secondNumber) => firstNumber * secondNumber,
+  "+": (firstNumber, secondNumber) => firstNumber + secondNumber,
+  "-": (firstNumber, secondNumber) => firstNumber - secondNumber,
+  "=": (firstNumber, secondNumber) => secondNumber,
+};
 
 function resetCalculator() {
   firstValue = 0;
